@@ -24,7 +24,7 @@ class Solution {
                 answer += costs[3]*d;
                 answer += costs[4]*e;
                 answer += costs[5]*f;
-        return answer;  
+        return answer;   
     }
 }
 
