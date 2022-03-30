@@ -1,23 +1,17 @@
 case = int(input())
 for i in range(case):
-    fl = int(input()) #1
-    ho = int(input()) #3
-    count=0
-    #파이썬 2중 리스트 선언하기 
-    # 열 for i in 행(가로)
-    floor = [[0]*(ho) for i in range(0,fl)]
-
-     #floor[0] 행에 +1씩 값 넣어주기 (1,2,3,4...)
-    for i in floor[0]:
+    fl = int(input()) 
+    ho = int(input()) 
+    floor = [[0]*(ho) for i in range(0,fl+1)]
+    
+    for i in range(0,ho):
         floor[0][i] = i+1
     
-    for i in range(1,fl):
+    for i in range(1,fl+1):
         for d in range(0,ho):
-            m = i-1
-            # 한 층 아래의 1~호수 까지 수 더하기 
-            # 배열 이름 = [row[0:d] for row in floor[i]]
-            floor[i][d] += [row[0:d] for row in floor[m]]
-    print(floor[fl][ho])
+            for m in range(0,d+1):
+                floor[i][d] += floor[i-1][m]
+    print(floor[fl][ho-1])
 
 #2차원 배열
 # 1행 : list[0] 
