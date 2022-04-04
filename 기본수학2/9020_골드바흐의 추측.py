@@ -14,22 +14,65 @@ def primeNum(n):
 
 
 t = int(input()) #테스트 케이스 
-for i in (0,3):
+while(t):
     num = int(input()) #2보다 큰 짝수 n
     cha =[10000, 0, 0]
-    for n in range(1,num):
+    for n in range(1,(num//2)+1):
         if primeNum(n) and primeNum(num-n): # 두 수가 소수이면
             n1, n2 = n, num-n
+            chacha = n2 -n1
             if n > num-n :
-                chacha = n - (num-n)
-            else :
-                chacha = (num-n) -n
+                chacha = n1 - n2
 
             if cha[0]>chacha:
                 cha = [chacha, n1, n2]
     print(cha[1],cha[2])
+    t -= 1
 
-    
 
-            
+    # ============위에꺼 시간초과임============
+
+t = int(input()) #테스트 케이스 
+
+def primeNum(n):
+# True False 모두 리턴하지 않고 True일때만 return!
+    f = False
+    for i in range(2,int((n**0.5))+1):
+        if n%i==0:
+            f = True
+            break
+    return f # 소수이면 트루
+
+for _ in range(t): #while 대신 for문
+    num = int(input()) #2보다 큰 짝수 n
+    ##둘로 나눈 수에서 한칸씩 옮기면서 소수를 찾는방식
+    a = num // 2
+    b = a
+    while(primeNum(a) or primeNum(b)): 
+        a-=1
+        b+=1
+    print(a,b)
+# ============math 사용 유무 시간차이 : 
+#                math.sqrt()대신 (n**0.5) 썼을 때 20ms 빠르다 ============
+import math  
+t = int(input()) #테스트 케이스 
+
+def primeNum(n):
+# True False 모두 리턴하지 않고 True일때만 return!
+    f = False
+    for i in range(2,int(math.sqrt(n))+1):
+        if n%i==0:
+            f = True
+            break
+    return f # 소수이면 트루
+
+for _ in range(t): #while 대신 for문
+    num = int(input()) #2보다 큰 짝수 n
+    ##둘로 나눈 수에서 한칸씩 옮기면서 소수를 찾는방식
+    a = num // 2
+    b = a
+    while(primeNum(a) or primeNum(b)): 
+        a-=1
+        b+=1
+    print(a,b)          
 
