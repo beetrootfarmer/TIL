@@ -1,6 +1,7 @@
 tstring = "this is {template} {template} is {state}"
 variables = [["template", "string"], ["state", "changed"]]
 
+
 # result = "this is string string is changed"
 from string import Template
 import re
