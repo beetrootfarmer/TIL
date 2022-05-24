@@ -10,10 +10,11 @@ min = m
 temp = 0
 result = 0
 
-for i in range(0, n - 2):
-    for j in range (i + 1, n - 1):
-        temp = m - (a[i] + a[j] + a[j + 1])
-        if(temp < min and temp >= 0):
-            min = temp
-            result = a[i] + a[j] + a[j + 1]
+for i in range(n):
+    for j in range (i + 1, n):
+        for k in range (j + 1, n):
+            temp = m - (a[i] + a[j] + a[k])
+            if(temp < min and temp >= 0):
+                min = temp
+                result = a[i] + a[j] + a[k]
 print(result)
