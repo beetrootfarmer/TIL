@@ -4,6 +4,7 @@
 n, m = map(int,input().split())
 a = list(map(int,input().split()))
 
+
 #m을 넘지 않으면서 m에 최대한 가까운 카드 3장의 합을 출력
 #min = m에서 세 수를 더한 값을 뺀 것 
 min = m
