@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<div class="row">
+  {% for article in articles %}
+  
+  <div class="row" id="wrap" style="width:32.3333%; margin:0.5%;background-color: white; height: 150px; border-radius: 5px;">
+   
+    <div class="col-4">
+    <!-- 좋아요 기능 -->
+      <form action="{% url 'mint:likes' article.pk %}" method="POST" style="display: inline-block;">
+          {% csrf_token %}
+          {% if request.user in article.like_users.all %}
+            <button type="submit" class="btn btn-lg btn-outline-success" style="border:none; background: none;">
+              <span class="fa-stack">
+                <i class="fa-circle fa-inverse"></i>
+                <i class="fa-solid fa-heart"></i>
+              </span>
+            </button>
+          {% else %}
+            <button type="submit" class="btn btn-lg btn-outline-success" style="border:none; background: none;">
+              <span class="fa-stack">
+                <i class="fa-circle fa-inverse"></i>
+                <i class="fa-regular fa-heart"></i>
+              </span>
+            </button>
+          {% endif %}
+      </form>
+  </div>
+  <div class="col-8">
+    <a href="{% url 'mint:detail' article.pk %}" style="display: inline-block;">
+      <div>
+        
+        <a href="{% url 'freaks:profile' article.user.username %}"><h5>{{article.user}}</h5></a>
+        <a href="{% url 'mint:detail' article.pk %}">
+          <h4>{{article.title}}</h4>
+          <p>{{article.content}}</p>
+        </a>
+        <!-- <div >
+          <a href="{% url 'mint:detail' article.pk %}">
+            <h4>{{article.title}}</h4>
+            <p>{{article.content}}</p>
+          </a>
+        </div> -->
+      </div>
+      </a>
+    </div>
+  
+</div>
+  {% endfor %}
+</div>
+
+<a href="{% url 'mint:create' %}"><button class="btn btn-outline-success">글쓰기</button></a>
+
+{% endblock content %}

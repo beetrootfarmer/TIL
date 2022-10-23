@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>keymagic</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/5c53a7748a.js" crossorigin="anonymous"></script>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  <style>
+    body{
+      background-color: rgb(244, 252, 251);
+    }
+    .logo{
+      width: 170px;
+    }
+    .nav {
+      margin-top : 10px;
+      
+      padding: 30px;
+      /* border: solid 2px aliceblue;
+      border-radius: 10px; */
+      
+    }
+    .rightnav{
+      /* margin-top : 20px; */
+      display: table;
+      height: 100%;
+      
+      
+    }
+    .rightnav *{
+      display: table-cell;
+      vertical-align: middle;
+      margin: 2px;
+    }
+    .hellouser, hr, p,h4, h1 {
+      color:rgb(78, 137, 96);
+    }
+    .btn {
+      width: 150px;
+    }
+    a{
+      text-decoration:none;
+    }
+   .likeit{
+     width: 50px;
+   }
+   </style>
+   {% block extra-style %}
+   {% endblock extra-style %}
+</head>
+<body>
+  
+  
+  <header>
+    <div class="container">
+        <div class="row nav nav-bar">
+          <div class="col">
+            <a href="{% url 'mint:index' %}" >
+              <img class="logo" src="https://user-images.githubusercontent.com/87971876/195972663-4e1366b7-d7d3-485e-9ebd-940e115f3ed3.PNG" alt="mintchoco">
+            </a>
+          </div>
+          <div class="col-4"></div>
+          <div class="col row rightnav">
+            <div class="col-6">
+                <!-- <h3>mintchoco world~~~~~~~~</h3> -->
+                {% if request.user.is_authenticated  %}
+              <h3 class="hellouser">Hello! {{user}}</h3>
+            </div>
+            <div class="col-6">
+              <a href="{% url 'freaks:profile' user.username %}"><button class="btn btn-outline-success">내 프로필</button></a>
+              <form action="{% url 'freaks:logout' %}" method="POST" style="display: inline-block;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-success">로그아웃</button>
+              </form>
+          
+            {% else %}
+              <a href="{% url 'freaks:login' %}"><button type="submit" class="btn btn-outline-success">로그인</button></a>
+              <a href="{% url 'freaks:signup' %}"><button type="submit" class="btn btn-outline-success">회원가입</button></a>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+    </div>
+  </header>
+
+  <div class="container" style="margin-bottom: 60px;">
+    {% block content %}{% endblock content %}
+    {% block footer %}{% endblock footer %}
+  </div>
+
+</body>
+</html>

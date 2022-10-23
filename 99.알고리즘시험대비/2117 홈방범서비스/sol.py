@@ -3,7 +3,6 @@
 # 최소 필요한 집부터 시작해서 손해보지 않는 지점까지 탐색
 # 최소 필요한 집 = 운영비용 이상인 M의 배수 중 가장 작은 수
 # 지도를 순회하면서 어디 위치에서 마름모를 그려야 많은 집을 포함하는지 확인한다
-import copy
 import sys
 sys.stdin = open('input.txt')
 
@@ -26,8 +25,6 @@ def security_service(i, j, k,N):
                     if 0 <= i < N and 0 <= j < N and not visited[i][j]:
                         home += village[i][j]
                         visited[i][j] = 1
-                        # if i ==10 and j == 10 and k==N+1:
-                        #     print('?!?')
             i -= 1
         return home
 
@@ -48,17 +45,5 @@ for tc in range(1, T+1):
 
                 if pr >= 0 and home>=served:              # 수익이 있을 때 profit 에 제공받은 가구수 비교하고 갱신
                     served = home
-                    # result = copy.deepcopy(visited)
-                    # result.append([i, j])
-                    # print(k)
-                    # for n in range(N):
-                    #     print(visited[n])
-                    # print()
 
     print(f'#{tc} {served}')
-    # for n in range(N):
-    #     print(village[n])
-    # print()
-    # for n in range(N+1):
-    #     print(result[n])
-    # print()

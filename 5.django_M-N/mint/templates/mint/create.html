@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load bootstrap5 %}
+  <h1>CREATE PAGE</h1>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn btn-outline-success" type="submit">작성 완료</button>
+  </form>
+  <br>
+  <a href="{% url 'mint:index' %}"><button class="btn btn-outline-success">뒤로가기</button></a>
+{% endblock content %}
