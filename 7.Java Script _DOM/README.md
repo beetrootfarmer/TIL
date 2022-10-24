@@ -55,7 +55,6 @@
         
         <body>등과 같은 수많은 요소를 포함
         
-        ![Untitled.png](Java%20Script_DOM%209a2aea8c7c244d1a8f81d7dfed2934c2/Untitled%201.png)
         
 
 +
@@ -302,7 +301,6 @@ counter변수 증가 확인
 
 ![Untitled](Java%20Script_DOM%209a2aea8c7c244d1a8f81d7dfed2934c2/Untitled%2010.png)
 
-![Untitled](Java%20Script_DOM%209a2aea8c7c244d1a8f81d7dfed2934c2/Untitled%2011.png)
 
 ### Event 취소
 
@@ -421,7 +419,6 @@ counter변수 증가 확인
 </html>
 ```
 
-![Untitled](Java%20Script_DOM%209a2aea8c7c244d1a8f81d7dfed2934c2/Untitled%2014.png)
 
 ![Untitled](Java%20Script_DOM%209a2aea8c7c244d1a8f81d7dfed2934c2/Untitled%2015.png)
 
