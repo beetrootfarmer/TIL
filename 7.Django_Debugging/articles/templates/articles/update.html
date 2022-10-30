@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load bootstrap5 %}
+<h1>수정페이지 입니다~</h1>
+<hr>
+<div class="row">
+    <div class="row">
+        <form action="{% url 'articles:update' article.pk %}" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button class="btn btn-outline-info" type="submit">수정하기</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
