@@ -4,6 +4,7 @@ from .models import Article, Comment
 from .forms import ArticleForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 def index(request):
     articles  = Article.objects.all()
@@ -58,3 +59,20 @@ def update(request, article_pk):
         'article' : article,
     }
     return render(request, 'articles/update.html', context)
+
+def likes(request, article_pk):
+    if request.user.is_authenticated:
+        article = Article.objects.get(pk=article_pk)
+        if article.like_users.filter(pk=request.user.pk).exists():
+            article.like_users.remove(request.user)
+        else:
+            article.like_users.add(request.user)
+        return redirect('articles:index')
+    return redirect('accounts:login')
+    
+def detail(request, article_pk): # (주의) url에 정의한 변수명과 일치해야함
+    context = {
+        'article' : article,
+        'form' : form,
+    }
+    return render(request, 'articles/detail.html', context)

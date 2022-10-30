@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load bootstrap5 %}
 <h1>상세 페이지</h1>
 
 
-<p>{{ article.pk }}번 째 글</p>
 <hr>
+<p>좋아요: {{article.like_users.count}}</p>
 <p>제목 : {{article.title}}</p>
 <p>내용 : {{article.content}}</p>
-<p>작성 시간 : {{article.created_at}}</p>
 <p>수정 시간 : {{article.updated_at}}</p>
 <hr>
 
@@ -19,6 +19,18 @@
         <button class="btn btn-outline-danger" type="submit">글 삭제</button>
     </form>
     <a href="{% url 'articles:update' article.pk %}"><button class="btn btn-outline-danger">글 수정하기</button></a>
+    <hr>
+    <p>comment</p>
+    <form action="" method="POST">
+        {%csrf_token%}
+        {% bootstrap_form form %}
+        <input type="submit" value="댓글생성">
+    </form>
+    {% for comment in article.comment_set.all %}
+    <hr>
+    <p>{{comment.content}} | {{comment.created_at}} </p>
+    {% endfor %}
+
 {% endif %}
 <br>
 

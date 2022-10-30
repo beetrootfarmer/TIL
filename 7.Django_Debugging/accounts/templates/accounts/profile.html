@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load bootstrap5 %}
+<h1>{{ person.username }}님의 프로필</h1>
+{% if user == person %}
+    <!-- 회원정보 수정 --> <!-- 회원탈퇴 -->
+    <a href="{% url 'accounts:update' %}"><button class="btn btn-outline-primary"> 회원정보 수정</button></a>
+    <!-- 비밀번호 변경 -->
+{% endif %}
+<hr>
+<div>
+    <div>
+      팔로잉 : {{person.followings.all|length}}
+      팔로워 : {{person.followers.all|length}}
+    </div>
+    {% if request.user != person %}
+      <div>
+        <form action="{% url 'accounts:follow' person.pk %}" method="POST">
+          {% csrf_token %}
+          {% if request.user in person.followers.all %}
+            <input class="btn btn-outline-warning" type="submit" value="언팔로우">
+          {% else %}
+            <input class="btn btn-outline-warning" type="submit" value="팔로우">
+          {% endif %}
+        </form>
+      </div>
+    {% endif %}
+  </div>
+  <hr>
+<h3>작성한 게시글</h3>
+{% for article in person.article_set.all %}
+<a href="{% url 'articles:detail' article.pk %} "><div>{{article.title}}</div></a>
+{% endfor %}
+<hr>
+<h3>작성한 댓글</h3>
+{% for comment in person.comment_set.all %}
+<div>{{comment.content}}</div>
+{% endfor %}
+<hr>
+<h3>좋아요한 게시글</h3>
+{% for article in person.like_articles.all %}
+<div>{{article.title}}</div>
+{% endfor %}
+<hr>
+
+<a href="{% url 'articles:index' %}">뒤로가기</a>
+{% endblock content %}
+

@@ -5,16 +5,41 @@
 <hr>
 <div class="row">
     {% for article in articles %}
-    <a href="{% url 'articles:detail' article.pk %}">
-        <div id="mainArticles">
-            <p>글쓴이 : {{article.user}}</p>
-            <p>제목 : {{article.title}}</p>
-            <p>내용 : {{article.content}}</p>
-            <p>작성일 : {{article.updated_at}}</p>
-        </div>
-    </a>
+        {% for comment in article.comment_set.all %}
+            <hr>
+            <p>{{comment.content}} | {{comment.created_at}} </p>
+        {% endfor %}
+        <div>
+            <form action="{% url 'articles:likes' article.pk %}" method="POST">
+                {% csrf_token %}
+                {% if request.user in article.like_users.all %}
+                <button type="submit" class="btn">
+                    <span class="fa-stack fa-2x">
+                        <i class="fa-circle fa-stack-2x fa-inverse"></i>
+                        <i class="fa-solid fa-heart fa-stack-1x"></i>
+                    </span>
+                </button>
+                {% else %}
+                <button type="submit" class="btn">
+                    <span class="fa-stack fa-2x">
+                        <i class="fa-circle fa-stack-2x fa-inverse"></i>
+                        <i class="fa-regular fa-heart fa-stack-1x"></i>
+                    </span>
+                </button>
+                {% endif %}
+            </form>
+          </div>
+        <h4><a href="{% url 'accounts:profile' article.user.username %}">{{article.user}}</a>의 글</h4>
+        <a href="{% url 'articles:detail' article.pk %}">
+            <div id="mainArticles">
+                <p>제목 : {{article.title}}</p>
+                <p>내용 : {{article.content}}</p>
+                <p>작성일 : {{article.updated_at}}</p>
+            </div>
+        </a>
     <hr>
     {% endfor %}
     <a href="{% url 'articles:new' %}" class="btn btn-outline-primary">글쓰기</a>
 </div>
+
 {% endblock content %}
