@@ -2,9 +2,6 @@
 
 > 글쓰니 김혜지
 > 
-
-/목
-
 - 목차
 
 ---
@@ -24,7 +21,7 @@ setuptools 58.1.0
 
 $ pip install django==3.2.13 # LT..오랜시간 사용된 3.2.13 버전 사용
 
-$ pip freeze > reqirements.txt
+$ pip freeze > requirements.txt
 ```
 
 ```
@@ -113,7 +110,6 @@ render(reqeust, 템플릿 이름)를 통해서 페이지 보여줌
 ```python
 from django.shortcuts import render
 
-# Create your views here.
 def index(request):
     # request에는 모든 요청정보가 들어있다.
     # path 함수에 views.index 함수 정보 넘겨주면서
@@ -219,6 +215,16 @@ Migrations for 'articles':
     ```
     
 
++python [manage.py](http://manage.py) migrate
+
+### admin 페이지에 모델 추가하기
+
+```python
+from .models import 모델명
+
+admin.site.register(모델명)
+```
+
 ### index 페이지에서 모든 게시물 표출
 
 ```python
@@ -302,7 +308,7 @@ class ArticleForm(forms.ModelForm):
     # 그 정보는 Meta class에 넣는다 
     class Meta:
         model = Article
-				fields = "**all**"       # article의 모든 필드를 포함한다는 뜻. 빼먹으면 오류남. 빼먹지 말기..
+				fields = "__**all__**"       # article의 모든 필드를 포함한다는 뜻. 빼먹으면 오류남. 빼먹지 말기..
 ```
 
 ### 만든 form을 index로 넘겨주기
@@ -501,6 +507,14 @@ def signup(request):
 
 ### User 모델 만들어주기
 
+```python
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    pass
+```
+
 ### AUTH_USER_MODEL 원래 장고의 유저모델 덮어쓰기
 
 ```python
@@ -577,11 +591,15 @@ def signup(request):
 
 ### UserCreationForm에서 정보가 변경된 것을 알아야함. form에서 재정의
 
+- 재정의해서 사용해야하는 form
+    - UserCreationForm
+    - UserChangeForm
+
 ```python
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model # 현재 활성화되어있는 user 모델을 가져와주는 get_user_model
 
-class CustumUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
         fields = UserCreationForm.Meta.fields
@@ -607,7 +625,7 @@ def signup(request):
     return render(request, 'accounts/signup.html', context)
 ```
 
-### User객체 를 담아서 회원가입 시 로그인 해주기
+### User객체를 담아서 회원가입 시 로그인 해주기
 
 ```python
 from multiprocessing import context
@@ -748,6 +766,95 @@ def login(request):
         'form' : form
     }
     return render(request, 'accounts/login.html', context)
+```
+
+## 회원정보 수정
+
+### 회원정보 수정form 상속받아서 필드 재설정
+
+```python
+class CustomUserChangeForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = get_user_model()
+        fields = ('username', 'first_name', 'last_name', 'email')
+```
+
+### 회원정보 수정 form에 request.user를 인스턴스로 담아서 폼 전송, 저장
+
+```python
+def update(request):
+    if request.method=='POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {
+        'form' : form,
+    }
+    return render(request, 'accounts/update.html', context)
+```
+
+## 회원 탈퇴기능
+
+### 회원탈퇴하면서 로그아웃하는 로직
+
+```python
+from django.contrib.auth import logout as auth_logout
+
+def delete(request):
+    request.user.delete()
+    auth_logout(request)
+    return redirect('articles:index')
+```
+
+### 회원정보 수정 페이지에서 회원탈퇴 버튼 추가
+
+## 비밀번호 변경
+
+### 비밀번호 변경 폼은 PasswordChangeForm
+
+```python
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+
+def change_password(request):
+    if request.method=='POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        'form':form,
+    }
+    return render(request, 'accounts/change_password.html',context)
+```
+
+### 비밀번호 변경 후 로그인 상태를 유지하기위한 라이브러리
+
+**update_session_auth_hash() 추가하기**
+
+- 현재 요청과 새 세션데이터가 파생될 업데이트 된 사용자 객체를 가져오고, session data를 적절하게 업데이트해준다
+- **암호가 변경되어도 로그아웃 되지 않도록 새로운 비밀번호의 session data로 세션을 업데이트해준다**
+
+```python
+from django.contrib.auth import update_session_auth_hash
+
+def change_password(request):
+	if request.method == 'POST':
+			form = PasswordChangeForm(request.user, request.POST)
+			if form.is_valid():
+				form.save()
+				update_session_auth_hash(request, form.user)
+				return redirect('articles:index')
+	else:
+		form = PasswordChangeForm(request.user)
+	context = {
+		'form' : form,
+	}
+	return render(request, 'accounts/change_password.html', context)
 ```
 
 ---
@@ -923,6 +1030,13 @@ Please select a fix:
  2) Quit, and let me add a default in models.py
 ```
 
+1 두번 입력 ⇒ 1번 회원의 이름으로 article의 user가 설정된다
+
+- 참고
+    
+    [점프 투 파이썬](https://wikidocs.net/71306)
+    
+
 ```bash
 다시
 $python manage.py makemigrations articles
@@ -969,7 +1083,6 @@ if form.is_valid():
 ### 로그인을 안 한 상태로 게시글 작성했을 때 로그인 페이지로 redirect
 
 ```python
-@login_required
 def create(request):
     ...
     return render(request, 'articles/create.html', context)
@@ -1044,4 +1157,61 @@ def delete(request, article_pk):
         <input type="submit" value="글 삭제">
       </form>
 {% endif %}
+```
+
+## 게시글 수정
+
+### 수정 폼에 instance로 article 담아서 전달
+
+```python
+def update(request, article_pk):
+    article = Article.objects.get(pk=article_pk)
+    if request.method == "POST":
+        pass
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        'form':form,
+        'article' : article,
+    }
+    return render(request, 'articles/update.html', context)
+```
+
+### 수정 완료버튼 POST 눌렀을 때 instance로 article 받아서 폼 저장
+
+```python
+def update(request, article_pk):
+    article = Article.objects.get(pk=article_pk)
+    if request.method == "POST":
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:detail', article_pk) 
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        'form':form,
+        'article' : article,
+    }
+    return render(request, 'articles/update.html', context)
+```
+
+### 수정 form view 만들기
+
+```html
+{% extends 'base.html' %}
+{% block content %}
+{% load bootstrap5 %}
+<h1>수정페이지 입니다~</h1>
+<hr>
+<div class="row">
+    <div class="row">
+        <form action="{% url 'articles:update' article.pk %}" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button class="btn btn-outline-info" type="submit">수정하기</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
 ```
