@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Interpolation</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ msg }}</p>
+        <p>HTML 메세지 : {{ hi }}</p>
+        <p>hi 메세지 : <span style="color:red"> 글자 색이 바뀌었나요?</span></p>
+        <p>hi 메세지 : <span v-html="hi"></span></p>
+        <p v-html="hi"></p>
+        <p>{{ msg.split('').reverse().join('')}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el : '#app',
+            data: {
+                msg : '하바타카차자하사바마라다나가',
+                hi : '<span style="color:red"> 글자 색이 바뀌었나요?</span>'
+            }
+        })
+    </script>
+</body>
+</html>
