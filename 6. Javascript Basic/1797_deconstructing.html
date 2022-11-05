@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document</title>
+</head>
+<body>
+    <h1>hi</h1>
+    <script>
+        /* 
+        1. 아래 코드를 object destructuring을 활용해 리팩토링 하시오.
+        2. Rest operator를 활용해 아래 코드를 리팩토링 하시오.
+        3. Spread operator를 활용해 아래 코드를 리팩토링 하시오.
+        */
+
+        // 1-1
+        const savedFile = {
+        name: 'profile',
+        extension: 'jpg',
+        size: 29930
+        }
+        function fileSummary(file) {
+            const {name, extension, size} = file
+            console.log(`The file ${name}.${extension} is size of ${size} bytes.`)
+        }
+        fileSummary(savedFile);
+
+        // 1-2
+        const data = {
+        username: 'myName',
+        password: 'myPassword',
+        email: 'my@mail.com',
+        }
+
+        const username = data.username
+        const password = data.password
+        const email = data.email
+        
+        // 2
+        function addNumbers(...restArgs) {
+        const numbers = [restArgs];
+        return numbers.reduce((sum, number) => { 
+            return sum + number
+        }, 0)
+        }
+
+        // 3-1
+        const defaultColors = ['red', 'green', 'blue'];
+        const palette = ['navy', 'black', 'gold', 'white',...defaultColors]
+        // const palette = defaultColors.concat(myFavoriteColors);
+
+        // 3-2
+        const info1 = { name: 'Tom', age: 30 }
+        const fullInfo = { isMarried: true, balance: 3000, ...info1}
+        
+    </script>
+</body>
+</html>
