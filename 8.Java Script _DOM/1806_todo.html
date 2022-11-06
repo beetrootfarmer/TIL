@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>오늘의 Todo</h1>
+    <div id="app">
+        <form id="form">
+            <input type="text">
+            <button>add</button>
+        </form>
+    </div>
+    <script>
+      const divTag = document.querySelector('#app')
+      const form = document.querySelector('#form')
+      const input = document.querySelector('input')
+      const button = document.querySelector('button')
+
+      const ulTag = document.createElement('ul')
+  
+      divTag.append(ulTag)
+      button.addEventListener('click', function(e){
+          if (input.value == ''){
+              alert('값을 입력하세요!')
+          }else{
+          e.preventDefault()
+          let todo = document.createElement('li')
+          console.log(input.value)
+          todo.innerText = input.value
+          ulTag.append(todo)
+          input.value = ''
+          }
+      })
+    </script>
+</body>
+</html>

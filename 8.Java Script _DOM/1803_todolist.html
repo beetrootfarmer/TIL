@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+      const divTag = document.querySelector('#app')
+      const h1Tag = document.createElement('h1')
+      h1Tag.innerText = '오늘의 Todo'
+      divTag.append(h1Tag)
+
+      const ulTag = document.createElement('ul')
+      const liTag1 = document.createElement('li')
+      const liTag2 = document.createElement('li')
+      const liTag3 = document.createElement('li')
+      liTag1.innerText = '공부하기'
+      liTag2.innerText = '양치하기'
+      liTag3.innerText = '휴식하기'
+      ulTag.append(liTag1, liTag2, liTag3)
+      divTag.append(ulTag)
+    </script>
+</body>
+</html>
