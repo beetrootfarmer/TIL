@@ -1,4 +1,4 @@
-# Java Script_ 비동기처리 axios
+# Java Script 비동기 Async (1)
 
 - 목차
 
@@ -21,7 +21,7 @@
 - block이면서 비동기 :  커피주문하고 대기한다. 기존 함수의 리턴값을 필요로하지는 않지만 제어권을 넘기고 실행을 멈춘다
 - non-block 비동기 : 커피 주문하고 다른 일 하다가 커피가 만들어지면 받는다. 제어권을 넘겨주지 않으면서 자신의 함수를 계속 실행한다
 
-![Untitled](Java%20Script_%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20axios%20a32616b47fce4a798667b76cdc661b72/Untitled.png)
+![Untitled](Java%20Script%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%20Async%20(1)%20a240bb2f429d4229a801c87742133049/Untitled.png)
 
 ## 비동기를 사용하는 이유
 
@@ -57,15 +57,15 @@
 3. Web API에서 처리가 끝난 작업들은 곧바로 Call Stack 으로 들어가지 못하고 Task Queue(FIFO)에 순서대로 들어간다                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 4. Event Loop가 Call Stack이 비어있는 것을 계속 체크하고 Call STack이 빈다면 Task Queue에서 가장 오랜된 작업을 Call Stack으로 보낸다 
 
-![다른 task는 Call Stack에서 먼저 처리된다](Java%20Script_%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20axios%20a32616b47fce4a798667b76cdc661b72/Untitled%201.png)
+![다른 task는 Call Stack에서 먼저 처리된다](Java%20Script%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%20Async%20(1)%20a240bb2f429d4229a801c87742133049/Untitled%201.png)
 
 다른 task는 Call Stack에서 먼저 처리된다
 
-![WebAPI에서 처리가 끝나면 Task Queue로 들어간다](Java%20Script_%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20axios%20a32616b47fce4a798667b76cdc661b72/Untitled%202.png)
+![WebAPI에서 처리가 끝나면 Task Queue로 들어간다](Java%20Script%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%20Async%20(1)%20a240bb2f429d4229a801c87742133049/Untitled%202.png)
 
 WebAPI에서 처리가 끝나면 Task Queue로 들어간다
 
-![Event Loop가 감시를 하다가 Task Queue에 먼저 온 순서대로 보내는데 조건은 Call Stack이 비워지는 것. Call Stack 이 비워질 때까지 기다려야하기때문에 3초 뒤에 실행을 보장하지 못한다.](Java%20Script_%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20axios%20a32616b47fce4a798667b76cdc661b72/Untitled%203.png)
+![Event Loop가 감시를 하다가 Task Queue에 먼저 온 순서대로 보내는데 조건은 Call Stack이 비워지는 것. Call Stack 이 비워질 때까지 기다려야하기때문에 3초 뒤에 실행을 보장하지 못한다.](Java%20Script%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%20Async%20(1)%20a240bb2f429d4229a801c87742133049/Untitled%203.png)
 
 Event Loop가 감시를 하다가 Task Queue에 먼저 온 순서대로 보내는데 조건은 Call Stack이 비워지는 것. Call Stack 이 비워질 때까지 기다려야하기때문에 3초 뒤에 실행을 보장하지 못한다.
 
@@ -97,9 +97,17 @@ axios.get("요청할 URL")
 
 - 파이썬
 
-![Untitled](Java%20Script_%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20axios%20a32616b47fce4a798667b76cdc661b72/Untitled%204.png)
+- JavaScript
 
-![Untitled](Java%20Script_%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20axios%20a32616b47fce4a798667b76cdc661b72/Untitled%205.png)
+![고양이는 야옹](Java%20Script%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%20Async%20(1)%20a240bb2f429d4229a801c87742133049/Untitled%204.png)
+
+고양이는 야옹
+
+![Untitled](Java%20Script%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%20Async%20(1)%20a240bb2f429d4229a801c87742133049/Untitled%205.png)
+
+![Untitled](Java%20Script%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%20Async%20(1)%20a240bb2f429d4229a801c87742133049/Untitled%206.png)
+
+![Untitled](Java%20Script%20%E1%84%87%E1%85%B5%E1%84%83%E1%85%A9%E1%86%BC%E1%84%80%E1%85%B5%20Async%20(1)%20a240bb2f429d4229a801c87742133049/Untitled%207.png)
 
 - 고양이 API code
     
@@ -142,7 +150,7 @@ axios.get("요청할 URL")
 - axios는 비동기로 데이터 동신을 가능하게 하는 라이브러리
 - 같은 방식으로 우리가 배운 Django REST API로 요청을 보내서 데이터를 받아온 후 처리할 수 있음
 
-## 강아지사진 생성기
+## workshop 강아지사진 생성기
 
 ```jsx
 <!DOCTYPE html>
@@ -196,6 +204,70 @@ axios.get("요청할 URL")
 </html>
 ```
 
+## HWS 1026
+
+```markdown
+1. 아래의 설명을 읽고 T/F 여부를 작성하시오.
+- JavaScript는 single threaded 언어로 한 번에 한 가지 일 밖에 처리하지 못한다.
+  -> True
+- setTimeout은 브라우저의 Web API를 사용하는 함수로, Web API에서 동작이
+완료되면 Call Stack에 바로 할당된다.
+  -> WebAPI에서 처리가 끝나면 Task Queue로 들어간다
+  ->Event Loop가 감시를 하다가 Task Queue에 먼저 온 순서대로 보내는데 조건은 Call Stack이 비워지는 것이다
+---
+2. JavaScript에서 동기와 비동기 함수의 차이점을 서술하시오.
+- 동기와 비동기는 호출되는 작업완료 여부를 신경쓰는지 여부
+- 자바스크립트는 단일 스레드 프로그래밍언어로 동기 방식으로 처리된다
+- 자바스크립트에서 비동기 처리의 예시로, setTimeout()메서드를 사용하면 해당 함수는 CallStack에 쌓이고 Web API로 보내진다.지정 대기시간만큼 기다린 후 CallStack이 빌 때 CallStack으로 이동해서 처리된다
+
+---
+3. 다음은 axios를 사용하여 API 서버로 요청을 보내고, 정상적으로 응답이 왔을 때 응답
+데이터를 출력하는 코드이다. (a), (b), (c)에 들어갈 코드를 작성하시오.
+```javascript
+  axios.(a)('https://api.example.com/data')
+    .(b)(function(response){
+      console.log( (c) )
+    })
+```
+(a) get
+(b) then
+(c) response.data
+```
+
+## HWS 1027
+
+```markdown
+1. 아래의 설명을 읽고 T/F 여부를 작성하시오.
+- Event Loop는 Call Stack이 비워지면 Task Queue의 함수를 Call Stack으로
+할당하는 역할을 한다.
+  -> True
+- XMLHttpRequest(XHR)는 AJAX 요청 instance를 생성하는 Web API이다.
+XHR객체를 활용하여 브라우저와 서버 간의 네트워크 요청을 전송할 수 있다.
+  -> False
+  -> XMLHttpRequest은 웹 브라우저와 웹 서버 간에 메소드가 데이터를 전송하는 객체 폼의 API이다
+- axios는 XHR(XMLHttpRequest)을 보내고 응답 결과를 Promise 객체로 반환해주는
+라이브러리이다  
+  -> True
+
+---
+2. 아래의 코드가 실행되었을 때 Web API, Task Queue, Call Stack 그리고 Event Loop에서
+어떤 동작이 일어나는지 서술하시오.
+```javascript
+console.log('Hello SSAFY!')
+
+setTimeout(function() {
+  console.log('I am from setTimeout')
+}, 1000)
+
+console.log('Bye SSAFY!')
+```
+- 'Hello SSAFY!' task는 Call Stack에 담겨 처리된다
+- 'I am from setTimeout' task는 WebAPI로 보내져 1000ms동안 처리되고(대기상태) 이후 Task Queue로 들어간다
+- 그 사이에 'Bye SSAFY!' task는 Call Stack에 담겨 처리된다
+- Event Loop는 Task Queue에 먼저 온 순서대로 처리하도록 감시하고 있다
+- Call Stack이 비어져있기 때문에 Call Stack으로 옮겨지고 'I am from setTimeout' task가 처리된다
+```
+
 ---
 
 # Callback과 Promise
@@ -232,7 +304,7 @@ urlpatterns = [
 ### 콜백함수를 사용하는 이유
 
 - 특정한 조건 혹은 행동에 대해 호출되도록 작성할 수 있음
-- “요청시” “이벤트 발생시” “데이터 받을 시” 등의 조건
+- “요청시” “이벤트 발생시” “데이터 받을 시” 등의 조건설정
 - 비동기 처리를 순차적으로 동작할 수 있게 한다
 
 ### 콜백지옥
@@ -249,7 +321,6 @@ urlpatterns = [
 - 비동기 작업의 완료 또는 실패를 나타내는 객체
 - Promise 기반의 클라이언트가 바로 Axios 라이브러리
     - “Promise based HPPT client for the browser and node.js”
-    - 
     - 실패에 대한 약속 catch()
 
 ### then(callback)
@@ -353,9 +424,9 @@ btn.addEventListener('click', function(){
         - js에서 가지고오기
         
         ```jsx
-        const userId = event.target.dataset.userId # 카멜케이스 주의
+        const userId = event.target.dataset.userId //카멜케이스 주의
         =>
-        const { userId } = event.target.dataset # 구조분해할당. 새로 만드는 변수명과 같으면 이렇게 사용가능
+        const { userId } = event.target.dataset //구조분해할당. 새로 만드는 변수명과 같으면 이렇게 사용가능
         
         axios({
             method:'post',
@@ -468,7 +539,7 @@ btn.addEventListener('click', function(){
 7. view에서 json 형태로 좋아요 여부 전달하기
     - get_object_or_404를 사용하는 경우와 Article.objects.get을 사용하는 경우 차이??
     
-    ```jsx
+    ```python
     @require_POST
     def likes(request, article_pk):
         if request.user.is_authenticated:
@@ -563,5 +634,11 @@ btn.addEventListener('click', function(){
 ```jsx
 <link rel="shortcut icon" href="http://사용자도메인명/favicon.ico" type="image/x-icon" />
 ```
+
+---
+
+### Django api 관리 _ Spectacular
+
+[DRF-Spectacular 사용법](https://velog.io/@catveloper/DRF-Spectacular-%EC%82%AC%EC%9A%A9%EB%B2%95)
 
 ---
