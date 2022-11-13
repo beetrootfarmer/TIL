@@ -495,7 +495,7 @@ const app = new Vue({
 ### v-on
 
 - addEventListener의 첫 번쨰 인자와 동일한 값들로 구성
-- method를 통한 data 조작도 가능
+- **method를 통한 data 조작도 가능**
 - method에 인자를 넘기는 방법은 일반함수를 호출할 때와 동일한 방식
 - `‘:'` 을통해 전달된 인자에따라 특별한 modifiers(수식어)가 있을 수 있음
 - `‘@’` shortcut제공
@@ -534,7 +534,6 @@ methods: {
 ```
 
 ### v-bind
-
 - HTML 의 속성값에 JS를 사용하기위한 라이브러리
 
 > html의 속성값을 변수로 받아와 사용
@@ -635,11 +634,11 @@ methods: {
 
 ### computed
 
-- Vue in stance가 가진 optinos중 하나
+- Vue instance가 가진 optinos중 하나
 - computed 객체에 정의한 함수를 페이지가 최초로 렌더링 될 때 호출하여 계산
     - 계산 결과가 변하기 전까지 함수를 재호출 하는 것이 아닌 계산된 값을 반환
     - 메서드는 사용할 때마다 계산함
-- 재계산이 적은 것을  computed로 주로 사용
+- 재계산이 적은 것을 computed로 주로 사용
 
 ```html
 <body>
