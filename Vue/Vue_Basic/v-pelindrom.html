@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>회문검사기</h2>
+        <input @keyup.enter="checkPelindrome" type="text">
+        <hr>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                myMessage: '',
+            },
+            methods: {
+                checkPelindrome: function (event) {
+                    const text = event.target.value
+                    if (!text){
+                        alert('입력값이 없습니다!')
+                    } else{
+                        var rev = text.split("").reverse().join("")
+                        if (text == rev){
+                            alert('회문입니다')
+                        } else{
+                            alert('회문이 아닙니다')
+                        }
+                    }
+                },
+            }
+        })
+    </script>
+
+</body>
+
+</html>
