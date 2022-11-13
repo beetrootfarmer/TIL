@@ -6,7 +6,7 @@
   - [Web App](#Web-App)
   - [SPA](#SPA)
   - [CSR(Client Side Rendering)](#CSR(Client-Side-Rendering))
-    - [CSR 방식을 사용하는 이유?](#CSR-방식을-사용하는-이유?)
+    - [CSR 방식을 사용하는 이유?](#csr-방식을-사용하는-이유?)
     - [CSR은 만능일까?](#CSR은-만능일까?)
     - [SEO](#SEO)
     -### Vue CDN
