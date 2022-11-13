@@ -2,10 +2,10 @@
 
 ## 목차
 - [Vue Intro](#-vue-intro)
-  - [FrontEnd(FE) Framework](#-FrontEnd(FE)-Framework)
+  - [FrontEnd(FE) Framework](#frontend(fe)-framework)
   - [Web App](#Web-App)
   - [SPA](#SPA)
-  - [CSR(Client Side Rendering)](#CSR(Client-Side-Rendering))
+  - [CSR(Client Side Rendering)](#csr(client-side-rendering))
     - [CSR 방식을 사용하는 이유?](#csr-방식을-사용하는-이유?)
     - [CSR은 만능일까?](#CSR은-만능일까?)
     - [SEO](#SEO)
