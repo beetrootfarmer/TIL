@@ -1,7 +1,7 @@
 # Vue Basic
 
 ## 목차
-- [Vue Intro](#-vue-intro)
+- [Vue Intro](#vue-intro)
   - [FrontEnd(FE) Framework](#frontend(fe)-framework)
   - [Web App](#Web-App)
   - [SPA](#SPA)
@@ -9,44 +9,42 @@
     - [CSR 방식을 사용하는 이유?](#csr-방식을-사용하는-이유?)
     - [CSR은 만능일까?](#CSR은-만능일까?)
     - [SEO](#SEO)
-    -### Vue CDN
-    - ### v-model : input에 입력하는 값 화면에 보여주기
-    - ### Vue2 vs Vue3
-# Vue instance
-## MVVM Pattern
-### view와 model 이 직접적으로 연결되어있지 않음!
-## 생성자 함수
-### el (element)
-### data
-### method
-### 메서드를 정의할 때 Arrow Function 사용X
+    -[Vue CDN](#Vue-CDN)
+    - [v-model : input에 입력하는 값 화면에 보여주기](#v-model-:-input에-입력하는-값-화면에-보여주기)
+    - [Vue2 vs Vue3](#Vue2-vs-Vue3)
+- [Vue instance](Vue-instance)
+  - [MVVM Pattern](MVVM-Pattern)
+    - view와 model 이 직접적으로 연결되어있지 않음!
+  - 생성자 함수
+    - el (element)
+    - data
+    - method
+    - 메서드를 정의할 때 Arrow Function 사용X
+- Basic of Syntax
+  - Text interpolation
+  - Directives
+    - v-text
+    - v-html
+    - v-show
+    - v-if
+    - v-show VS v-if
+    - v-for
+    - v-for 사용시 반드시 key속성값을 각 요소에 작성
+    - v-on
+    - v-bind
+    - V-model
 
-# Basic of Syntax
+- Vue advanced
 
-## Text interpolation
-## Directives
-### v-text
-### v-html
-### v-show
-### v-if
-### v-show VS v-if
-### v-for
-### v-for 사용시 반드시 key속성값을 각 요소에 작성
-### v-on
-### v-bind
-### V-model
+  - computed
+  - watch
+  - filter
 
-## Vue advanced
+- Vue Style Guide
+  - v-if 와 v-for를 같이 사용하지 않기
 
-### computed
-## watch
-## filter
-
-## Vue Style Guide
-### v-if 와 v-for를 같이 사용하지 않기
-
-### lodash cdn
-### Lodash 사용해서 랜덤한 값 표출하기
+- lodash cdn
+  - Lodash 사용해서 랜덤한 값 표출하기
 ---
 # Vue Intro
 
