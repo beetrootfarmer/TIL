@@ -35,14 +35,18 @@ def turn_the_table(d):
     turn = turn + mc + mr       # 움직인 횟수만큼 turn 변수에 반영
 
     for d2 in range(d+1, K):
-        if data[d2][1] == rn:
-            data[d2][2] += mc
-            if data[d2][2] >= N:
-                data[d2][2] = data[d2][2] % N
-        if data[d2][2] == ct:
-            data[d2][1] += mr
-            if data[d2][1] >= N:
-                data[d2][1] = data[d2][1] % N
+        if data[d2][0] == x:
+            data[d2][1] = rt
+            data[d2][2] = ct
+        else:
+            if data[d2][1] == rn:
+                data[d2][2] += mc
+                if data[d2][2] >= N:
+                    data[d2][2] = data[d2][2] % N
+            if data[d2][2] == ct:
+                data[d2][1] += mr
+                if data[d2][1] >= N:
+                    data[d2][1] = data[d2][1] % N
 
 for d in range(K):
     turn = 0
