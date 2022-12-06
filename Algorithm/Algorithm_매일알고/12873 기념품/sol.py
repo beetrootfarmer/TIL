@@ -11,10 +11,16 @@ students = list(range(1,N+1))
 print(students)
 for _ in range(1,N):
 
+    ls = len(students)
+
     count = t**3
-    if (count + next) > len(students):
-        count = (count + next) % (len(students)) # 시작점 기준으로 몇번째 사람이 제거되는지 배열의 길이 미만으로 만듦
-    a = students.pop(count-1)
+    if count > ls:
+        count = count % ls # 시작점 기준으로 몇번째 사람이 제거되는지 배열의 길이 미만으로 만듦
+
+    if (count + next-1) >= ls:
+        a = students.pop((count + next-1)%ls)
+    else:
+        a = students.pop(count + next-1)
     print('a', a)
     print('next', next, 'count', count)
     print('students', students)
