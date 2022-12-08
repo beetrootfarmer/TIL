@@ -3,8 +3,6 @@
 # 출력 : X를 (R, C)로 이동하는데 필요한 표의 회전 수를 줄 별로 출력
 
 
-# 이 방법으로 하면 해당 라인이 영향을 받는지 특정할 수 없음
-
 import sys
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
@@ -13,11 +11,11 @@ N, K = map(int,input().split())
 data = []
 for _ in range(K):
     X, R, C = map(int,input().split())
-    data.append([X,  X//N , (X-1) % N  , R-1, C-1])
+    data.append([X, (X-1)//N , (X-1) % N  , R-1, C-1]) # X//N  # [6, 1, 1, 3, 2]
 
 # 타겟을 목표 지점으로 옮기는 함수
 def move_target(n, t, N):
-    moved = 0
+    moved = 0 
     if n < t:               # 현재위치 n이 타켓 t보다 앞쪽에 위치하면 이동값은 t-n
         moved += t-n
     elif n > t:             # 현재 위치가 타켓 뒤라면 한바퀴 돌아서 이동해야하기때문에 N - n + t
