@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- Your custom script here -->
+<script type="text/babel">
+    const root = document.getElementById("root");
+    
+    function App() {
+        const [amount,setAmount] =React.useState(0);
+        const [flipped, setFlipped] = React.useState(false);
+        const onChange = (event) => {
+        setAmount(event.target.value);
+        };
+        const reset = () =>setAmount(0)  
+        const flip = () => {
+            reset();
+            setFlipped(current => !current)
+        };
+        return (
+            <div>
+                <h1 className="hi">Super Convenient</h1>
+                <label htmlFor="minutes">Minutes</label>
+                <input 
+                    value={flipped ? amount*60 : amount}
+                    id="minutes"
+                    type="number"
+                    onChange={onChange}
+                    disabled={flipped} // flipped === true
+                />
+                <br/>
+                <label htmlFor="hours">Hours</label>
+                <input 
+                    value={flipped ? amount : Math.round(amount / 60)}
+                    type="number"
+                    id='hours'
+                    onChange={onChange}
+                    disabled={!flipped} //flipped === false
+                    
+                />
+                <br/>
+                <button onClick={reset} >reset</button>
+                <button onClick={flip}>flip</button>
+
+            </div>
+        );
+    }
+    ReactDOM.render(<App />, root);
+    
+</script>
+</html>
