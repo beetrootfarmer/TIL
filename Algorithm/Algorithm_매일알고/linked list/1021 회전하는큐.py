@@ -39,6 +39,7 @@ for j in jm:
                 l += 1
             else:
                 now = len(q)-1
+                l += 1
         now = 0
         if r < l:                       # 2번 연산
             for i in range(r):
