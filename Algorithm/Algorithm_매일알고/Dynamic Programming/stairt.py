@@ -1,15 +1,31 @@
 N = int(input())
-stairs = [0] + [int(input()) for _ in range(N)]
+
+stairs = [[0,0,0]]
+
+for i in range(N):
+    a = int(input())
+    stairs.append([a,a,a])
+
+jump = [0] * (N+1) # 현재 값에서 점프가 필요한지 체크하는 배열. 점프가 필요하면 1
 
 # 계단은 한 번에 한 계단씩 또는 두 계단씩 오를 수 있다. 즉, 한 계단을 밟으면서 이어서 다음 계단이나, 다음 다음 계단으로 오를 수 있다.
 # 연속된 세 개의 계단을 모두 밟아서는 안 된다. 단, 시작점은 계단에 포함되지 않는다.
 # 마지막 도착 계단은 반드시 밟아야 한다.
 
-def go(flr, idx):
-    # 현재 층에서 1계단, 2계단 이동한 경우를 확인하는 함수
-    pass
-for i in range(N+1):
-    # 0부터 N까지 반복하면서 계단 오르기
+def go(seq,step, i):
+    # 현재 층에서 0계단 , 1계단 이동한 경우를 확인하는 함수
+    if step <= N:
+        # 한 칸 가는 경우(현재 칸 만) i-2의 최대값 +  현재 값을 배열[i][0]에 저장
+        # 두 칸 가는 경우(현재칸+1) 현재값 + 다음값을 배열[i][1]에 저장
+        pass
+
+for i in range(1,N):
+    # 0부터 N까지 반복하면서 계단을 한칸 혹은 올m랐을 때 점수를 해당 칸에 업데이트하기
+
+
+    for idx,step in enumerate(i, i+1):
+        # i인덱스 포함 한 칸, 두 칸, 한 칸 띄고 다음칸을 가는 경
+        go(idx,step, i)
     pass
 
 print(stairs[N])
